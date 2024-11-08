@@ -4,7 +4,8 @@ export function translate (translatable: Translatable | string, locale: string):
   if (typeof translatable === 'string') return translatable
   const defaultLocale1: string = 'nl'
   const defaultLocale2: string = 'en'
-  return translatable[locale] ?? translatable[defaultLocale1] ?? translatable[defaultLocale2] ?? '[missing translation]'
+  const defaultLocale3: string = 'de'
+  return translatable[locale] ?? translatable[defaultLocale1] ?? translatable[defaultLocale2] ?? translatable[defaultLocale3] ?? '[missing translation]'
 }
 
 export function getTranslations (translatables: Record<string, Translatable>, locale: string): Record<string, string> {

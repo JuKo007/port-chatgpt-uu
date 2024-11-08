@@ -99,3 +99,4 @@ interface Copy {
 const continueLabel = new TextBundle()
   .add('en', 'Continue')
   .add('nl', 'Verder')
+  .add('de', 'Weiter')

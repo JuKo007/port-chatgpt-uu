@@ -21,17 +21,20 @@ LOGGER = logging.getLogger("script")
 # Headers
 SUBMIT_FILE_HEADER = props.Translatable({
     "en": "Select your ChatGPT file", 
-    "nl": "Selecteer uw ChatGPT bestand"
+    "nl": "Selecteer uw ChatGPT bestand",
+    "de": "Wählen Sie Ihre ChatGPT-Datei aus"
 })
 
 REVIEW_DATA_HEADER = props.Translatable({
     "en": "Your ChatGPT data", 
-    "nl": "Uw ChatGPT gegevens"
+    "nl": "Uw ChatGPT gegevens",
+    "de": "Ihre ChatGPT-Datei"
 })
 
 RETRY_HEADER = props.Translatable({
     "en": "Try again", 
-    "nl": "Probeer opnieuw"
+    "nl": "Probeer opnieuw",
+    "de": "Erneut versuchen"
 })
 
 
@@ -139,18 +142,54 @@ def extract_chatgpt(chatgpt_zip: str) -> list[props.PropsUIPromptConsentFormTabl
     
     df = chatgpt.conversations_to_df(chatgpt_zip)
     if not df.empty:
-        table_title = props.Translatable({"en": "Your conversations with ChatGPT", "nl": "Uw gesprekken met ChatGPT"})
+        table_title = props.Translatable({
+        "en": "Your conversations with ChatGPT", 
+        "nl": "Uw gesprekken met ChatGPT", 
+        "de": "Ihre Gespräche mit ChatGPT"
+        })
         table_description = props.Translatable({
             "en": "Table description", 
-            "nl": "Table description"
+            "nl": "Table description",
+            "de": "Tabellenbeschreibung"
         })
         wordcloud = {
-            "title": {"en": "", "nl": ""},
+            "title": {"en": "", "nl": "", "de": ""},
             "type": "wordcloud",
             "textColumn": "message",
             "tokenize": True,
         }
-        table = props.PropsUIPromptConsentFormTable("chatgpt_conversations", table_title, df, table_description, [wordcloud])
+        line_chart_vis = {
+            "title": {"en": "", "nl": "", "de": ""},
+            "type": "line",
+            "group": {
+                "column": "time", 
+                "dateFormat": "month", 
+                "label": {"en": "Month", "nl": "Maand", "de": "Monat"}
+            },
+            "values": [
+                {
+                    "aggregate": "count", 
+                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespräche"}
+                }
+            ]
+        }
+        line_chart_vis2 = {
+            "title": {"en": "", "nl": "", "de": ""},
+            "type": "bar",
+            "group": {
+                "column": "time", 
+                "dateFormat": "month", 
+                "label": {"en": "Month", "nl": "Maand", "de": "Monat"}
+            },
+            "values": [
+                {
+                    "aggregate": "count", 
+                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespräche"},
+                    "group_by": "model"
+                }
+            ]
+        }
+        table = props.PropsUIPromptConsentFormTable("chatgpt_conversations", table_title, df, table_description, visualizations = [wordcloud, line_chart_vis, line_chart_vis2])
         tables_to_render.append(table)
 
     return tables_to_render
@@ -177,11 +216,12 @@ def retry_confirmation(platform):
     text = props.Translatable(
         {
             "en": f"Unfortunately, we could not process your {platform} file. If you are sure that you selected the correct file, press Continue. To select a different file, press Try again.",
-            "nl": f"Helaas, kunnen we uw {platform} bestand niet verwerken. Weet u zeker dat u het juiste bestand heeft gekozen? Ga dan verder. Probeer opnieuw als u een ander bestand wilt kiezen."
+            "nl": f"Helaas, kunnen we uw {platform} bestand niet verwerken. Weet u zeker dat u het juiste bestand heeft gekozen? Ga dan verder. Probeer opnieuw als u een ander bestand wilt kiezen.",
+            "de": f"Leider konnten wir Ihre {platform}-Datei nicht verarbeiten. Wenn Sie sicher sind, dass Sie die richtige Datei ausgewählt haben, drücken Sie auf Weiter. Wenn Sie eine andere Datei auswählen möchten, drücken Sie auf Erneut versuchen."
         }
     )
-    ok = props.Translatable({"en": "Try again", "nl": "Probeer opnieuw"})
-    cancel = props.Translatable({"en": "Continue", "nl": "Verder"})
+    ok = props.Translatable({"en": "Try again", "nl": "Probeer opnieuw", "de": "Erneut versuchen"})
+    cancel = props.Translatable({"en": "Continue", "nl": "Verder", "de": "Weiter"})
     return props.PropsUIPromptConfirm(text, ok, cancel)
 
 
@@ -192,7 +232,8 @@ def generate_file_prompt(extensions):
     description = props.Translatable(
         {
             "en": f"Please follow the download instructions and choose the file that you stored on your device.",
-            "nl": f"Volg de download instructies en kies het bestand dat u opgeslagen heeft op uw apparaat."
+            "nl": f"Volg de download instructies en kies het bestand dat u opgeslagen heeft op uw apparaat.",
+            "de": f"Bitte folgen Sie den Download-Anweisungen und wählen Sie die Datei, die Sie auf Ihrem Gerät gespeichert haben."
         }
     )
     return props.PropsUIPromptFileInput(description, extensions)

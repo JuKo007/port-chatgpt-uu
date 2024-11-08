@@ -101,4 +101,5 @@ const forwardButtonLabel = (): Translatable => {
   return new TextBundle()
     .add('en', 'Skip')
     .add('nl', 'Overslaan')
+    .add('de', 'Überspringen')
 }
