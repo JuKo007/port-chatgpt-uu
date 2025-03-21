@@ -20,9 +20,9 @@ LOGGER = logging.getLogger("script")
 
 # Headers
 SUBMIT_FILE_HEADER = props.Translatable({
-    "en": "Select your ChatGPT file", 
+    "en": "Select your ChatGPT file, 
     "nl": "Selecteer uw ChatGPT bestand",
-    "de": "Wählen Sie Ihre ChatGPT-Datei aus"
+    "de": "Waehlen Sie Ihre ChatGPT-Datei aus"
 })
 
 REVIEW_DATA_HEADER = props.Translatable({
@@ -145,7 +145,7 @@ def extract_chatgpt(chatgpt_zip: str) -> list[props.PropsUIPromptConsentFormTabl
         table_title = props.Translatable({
         "en": "Your conversations with ChatGPT", 
         "nl": "Uw gesprekken met ChatGPT", 
-        "de": "Ihre Gespräche mit ChatGPT"
+        "de": "Ihre Gespraeche mit ChatGPT"
         })
         table_description = props.Translatable({
             "en": "Table description", 
@@ -169,7 +169,7 @@ def extract_chatgpt(chatgpt_zip: str) -> list[props.PropsUIPromptConsentFormTabl
             "values": [
                 {
                     "aggregate": "count", 
-                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespräche"}
+                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespraeche"}
                 }
             ]
         }
@@ -184,7 +184,7 @@ def extract_chatgpt(chatgpt_zip: str) -> list[props.PropsUIPromptConsentFormTabl
             "values": [
                 {
                     "aggregate": "count", 
-                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespräche"},
+                    "label": {"en": "Number of Conversations", "nl": "Aantal gesprekken", "de": "Anzahl der Gespraeche"},
                     "group_by": "model"
                 }
             ]
@@ -217,7 +217,7 @@ def retry_confirmation(platform):
         {
             "en": f"Unfortunately, we could not process your {platform} file. If you are sure that you selected the correct file, press Continue. To select a different file, press Try again.",
             "nl": f"Helaas, kunnen we uw {platform} bestand niet verwerken. Weet u zeker dat u het juiste bestand heeft gekozen? Ga dan verder. Probeer opnieuw als u een ander bestand wilt kiezen.",
-            "de": f"Leider konnten wir Ihre {platform}-Datei nicht verarbeiten. Wenn Sie sicher sind, dass Sie die richtige Datei ausgewählt haben, drücken Sie auf Weiter. Wenn Sie eine andere Datei auswählen möchten, drücken Sie auf Erneut versuchen."
+            "de": f"Leider konnten wir Ihre {platform}-Datei nicht verarbeiten. Wenn Sie sicher sind, dass Sie die richtige Datei ausgewaehlt haben, druecken Sie auf Weiter. Wenn Sie eine andere Datei auswaehlen möchten, druecken Sie auf Erneut versuchen."
         }
     )
     ok = props.Translatable({"en": "Try again", "nl": "Probeer opnieuw", "de": "Erneut versuchen"})
@@ -233,7 +233,7 @@ def generate_file_prompt(extensions):
         {
             "en": f"Please follow the download instructions and choose the file that you stored on your device.",
             "nl": f"Volg de download instructies en kies het bestand dat u opgeslagen heeft op uw apparaat.",
-            "de": f"Bitte folgen Sie den Download-Anweisungen und wählen Sie die Datei, die Sie auf Ihrem Gerät gespeichert haben."
+            "de": f"Bitte folgen Sie den Download-Anweisungen und waehlen Sie die Datei, die Sie auf Ihrem Geraet gespeichert haben."
         }
     )
     return props.PropsUIPromptFileInput(description, extensions)

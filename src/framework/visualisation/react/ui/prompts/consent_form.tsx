@@ -233,7 +233,7 @@ const defaultDescription = new TextBundle()
   )
   .add(
     "de",
-    "Entscheiden Sie, ob Sie die unten stehenden Daten spenden möchten. Prüfen Sie die Daten sorgfältig und passen Sie sie bei Bedarf an. Mit Ihrer Spende tragen Sie zu der oben beschriebenen Forschung bei. Vielen Dank im Voraus."
+    "Entscheiden Sie, ob Sie die unten stehenden Daten spenden moechten. Pruefen Sie die Daten sorgfaeltig und passen Sie sie bei Bedarf an. Mit Ihrer Spende tragen Sie zu der oben beschriebenen Forschung bei. Vielen Dank im Voraus."
   )
 
 const cancelButtonLabel = new TextBundle().add("en", "No").add("nl", "Nee").add("de", "Nein")

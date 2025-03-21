@@ -111,5 +111,5 @@ const placeholder = (): Translatable => {
   return new TextBundle()
     .add('en', 'Choose a file')
     .add('nl', 'Kies een bestand')
-    .add('en', 'Datei auswählen')
+    .add('en', 'Datei auswaehlen')
 }
