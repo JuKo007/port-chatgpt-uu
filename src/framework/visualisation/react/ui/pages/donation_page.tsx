@@ -58,7 +58,7 @@ export const DonationPage = (props: Props): JSX.Element => {
       right={
         <div className='flex flex-row'>
           <div className='flex-grow' />
-          <ForwardButton label={forwardButton} onClick={handleSkip} />
+          <div style={{ display: 'none' }}><ForwardButton label={forwardButton} onClick={handleSkip} /></div>
         </div>
       } />
     } else {

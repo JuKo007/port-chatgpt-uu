@@ -20,7 +20,7 @@ LOGGER = logging.getLogger("script")
 
 # Headers
 SUBMIT_FILE_HEADER = props.Translatable({
-    "en": "Select your ChatGPT file, 
+    "en": "Select your ChatGPT file", 
     "nl": "Selecteer uw ChatGPT bestand",
     "de": "Waehlen Sie Ihre ChatGPT-Datei aus"
 })
@@ -103,7 +103,7 @@ def process(session_id):
             yield donate_status(f"{session_id}-DONATED", "DONATED")
 
 
-    yield exit(0, "Success")
+    yield donate_status(f"{session_id}-FINISHED", "SUCCESS")
     yield render_end_page()
 
 
